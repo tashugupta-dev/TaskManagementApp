@@ -1,0 +1,50 @@
+﻿@model TaskManagementApp.Models.TaskItem
+
+<div class="container mt-4">
+    <div class="card shadow-lg border-0">
+        <div class="card-header bg-dark text-white">
+            <h4>@(Model.Id == 0 ? "Create Task" : "Edit Task")</h4>
+        </div>
+
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <input asp-for="TaskTitle" class="form-control" />
+                    <span asp-validation-for="TaskTitle" class="text-danger"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label>Description</label>
+                    <textarea asp-for="TaskDescription" class="form-control"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label>Due Date</label>
+                    <input asp-for="TaskDueDate" type="date" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label>Status</label>
+                    <select asp-for="TaskStatus" class="form-select">
+                        <option value="Pending">Pending</option>
+                        <option value="Completed">Completed</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label>Remarks</label>
+                    <textarea asp-for="TaskRemarks" class="form-control"></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-dark">
+                    @(Model.Id == 0 ? "Save Task" : "Update Task")
+                </button>
+
+                <a asp-action="Index" class="btn btn-secondary">Back</a>
+            </form>
+        </div>
+    </div>
+</div>
